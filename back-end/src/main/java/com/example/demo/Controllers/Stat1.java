@@ -2,6 +2,7 @@ package com.example.demo.Controllers;
 
 import com.example.demo.Services.Stat1Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +10,7 @@ import com.example.demo.Services.PersonnelService;
 import com.example.demo.Services.FamilyService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200") // Adjust this to match your Angular app's URL
 @RequestMapping("/api/stat1")
 public class Stat1 {
     @Autowired
