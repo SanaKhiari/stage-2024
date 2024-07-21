@@ -1,58 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Chart, ChartType, registerables } from 'chart.js';
 import { Stat1Service } from '../stat1.service';
 
 @Component({
   selector: 'app-stat1',
   standalone: true,
-  imports: [],
   templateUrl: './stat1.component.html',
   styleUrls: ['./stat1.component.css'],
 })
 export class Stat1Component implements OnInit {
-  totalPersonnel: number = 0;
-  totalFamilies: number = 0;
-  totalConjoints: number = 0;
-  totalEnfants: number = 0;
-  percentagePersonnel: number = 0;
-  percentageConjoints: number = 0;
-  percentageEnfants: number = 0;
+  public pieChartOptions: any = {
+    responsive: true,
+  };
+  public pieChartLabels: string[] = [];
+  public pieChartData: number[] = [];
+  public pieChartType: ChartType = 'pie'; // Correct type for ChartType
 
-  constructor(private stat1Service: Stat1Service) {}
+  constructor(
+    private stat1Service: Stat1Service,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit(): void {
-    this.stat1Service.getTotalPersonnel().subscribe({
-      next: (data) => (this.totalPersonnel = data),
-      error: (err) => console.error('Error fetching total personnel', err),
-    });
+    this.loadStatistics();
+  }
 
-    this.stat1Service.getTotalFamilies().subscribe({
-      next: (data) => (this.totalFamilies = data),
-      error: (err) => console.error('Error fetching total families', err),
+  loadStatistics(): void {
+    this.stat1Service.getTotalPersonnel().subscribe((personnel) => {
+      this.stat1Service.getTotalConjoints().subscribe((conjoints) => {
+        this.stat1Service.getTotalEnfants().subscribe((enfants) => {
+          this.pieChartLabels = ['Personnel', 'Conjoints', 'Enfants'];
+          this.pieChartData = [personnel, conjoints, enfants];
+          if (isPlatformBrowser(this.platformId)) {
+            this.renderChart();
+          }
+        });
+      });
     });
+  }
 
-    this.stat1Service.getTotalConjoints().subscribe({
-      next: (data) => (this.totalConjoints = data),
-      error: (err) => console.error('Error fetching total conjoints', err),
-    });
+  renderChart(): void {
+    Chart.register(...registerables);
 
-    this.stat1Service.getTotalEnfants().subscribe({
-      next: (data) => (this.totalEnfants = data),
-      error: (err) => console.error('Error fetching total enfants', err),
-    });
-
-    this.stat1Service.getPercentagePersonnel().subscribe({
-      next: (data) => (this.percentagePersonnel = data),
-      error: (err) => console.error('Error fetching percentage personnel', err),
-    });
-
-    this.stat1Service.getPercentageConjoints().subscribe({
-      next: (data) => (this.percentageConjoints = data),
-      error: (err) => console.error('Error fetching percentage conjoints', err),
-    });
-
-    this.stat1Service.getPercentageEnfants().subscribe({
-      next: (data) => (this.percentageEnfants = data),
-      error: (err) => console.error('Error fetching percentage enfants', err),
+    const ctx = document.getElementById('pieChart') as HTMLCanvasElement;
+    new Chart(ctx, {
+      type: this.pieChartType,
+      data: {
+        labels: this.pieChartLabels,
+        datasets: [
+          {
+            data: this.pieChartData,
+            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'], // Customize colors as needed
+          },
+        ],
+      },
+      options: this.pieChartOptions,
     });
   }
 }
