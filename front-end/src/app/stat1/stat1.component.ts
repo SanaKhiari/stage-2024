@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Chart, ChartType, registerables } from 'chart.js';
-import { Stat1Service } from '../stat1.service';
+import { Stat1Service } from './stat1.service';
 
 @Component({
   selector: 'app-stat1',
@@ -51,7 +51,7 @@ export class Stat1Component implements OnInit {
         datasets: [
           {
             data: this.pieChartData,
-            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'], // Customize colors as needed
+            backgroundColor: ['#317AC1', '#E1A624', '#D4D3DC'], //  colors
           },
         ],
       },
