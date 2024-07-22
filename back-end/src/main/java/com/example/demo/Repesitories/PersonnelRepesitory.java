@@ -19,4 +19,13 @@ public class PersonnelRepesitory  {
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
+    // Method to execute the PL/SQL procedure
+    public void executePyramideDesAgesParSexe() {
+        jdbcTemplate.execute("BEGIN PyramideDesAgesParSexe; END;");
+    }
+    public List<Map<String, Object>> fetchPyramideDesAgesParSexe() {
+        String sql = "SELECT * FROM TempPyramideAgesParSexe";
+        return jdbcTemplate.queryForList(sql);
+    }
+
 }
