@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Chart, ChartType, registerables } from 'chart.js';
-import { Stat1Service } from './stat1.service';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { Stat1Service } from '../../services/stat1.service';
 
 @Component({
   selector: 'app-stat1',
@@ -12,10 +13,15 @@ import { Stat1Service } from './stat1.service';
 export class Stat1Component implements OnInit {
   public pieChartOptions: any = {
     responsive: true,
+    plugins: {
+      datalabels: {
+        display: false, // This will hide the data labels
+      },
+    },
   };
   public pieChartLabels: string[] = [];
   public pieChartData: number[] = [];
-  public pieChartType: ChartType = 'pie'; // Correct type for ChartType
+  public pieChartType: ChartType = 'pie';
 
   constructor(
     private stat1Service: Stat1Service,
@@ -41,7 +47,7 @@ export class Stat1Component implements OnInit {
   }
 
   renderChart(): void {
-    Chart.register(...registerables);
+    Chart.register(...registerables, ChartDataLabels);
 
     const ctx = document.getElementById('pieChart') as HTMLCanvasElement;
     new Chart(ctx, {
@@ -51,7 +57,7 @@ export class Stat1Component implements OnInit {
         datasets: [
           {
             data: this.pieChartData,
-            backgroundColor: ['#317AC1', '#E1A624', '#D4D3DC'], //  colors
+            backgroundColor: ['#317AC1', '#E1A624', '#D4D3DC'], // Custom colors
           },
         ],
       },
