@@ -1,20 +1,19 @@
 import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
-import { PyramidAgeService } from '../../services/pyramid-age.service';
-import { Chart, registerables } from 'chart.js';
+import { Chart } from 'chart.js';
+import { AgePyramidTotalService } from '../../services/age-pyramid-total.service';
 
 @Component({
-  selector: 'app-age-pyramid',
+  selector: 'app-age-pyramid-total',
   standalone: true,
-  imports: [],
-  templateUrl: './age-pyramid.component.html',
-  styleUrls: ['./age-pyramid.component.css'],
+  templateUrl: './age-pyramid-total.component.html',
+  styleUrls: ['./age-pyramid-total.component.css'],
 })
-export class AgePyramidComponent implements AfterViewInit {
+export class AgePyramidTotalComponent implements AfterViewInit {
   @ViewChild('agePyramidCanvas')
   agePyramidCanvas!: ElementRef<HTMLCanvasElement>;
   chart!: Chart;
 
-  constructor(private pyramidAgeService: PyramidAgeService) {}
+  constructor(private pyramidAgeService: AgePyramidTotalService) {}
 
   ngAfterViewInit(): void {
     if (typeof window !== 'undefined') {
@@ -26,9 +25,11 @@ export class AgePyramidComponent implements AfterViewInit {
   }
 
   fetchPyramidAgeData(): void {
-    this.pyramidAgeService.getPyramidAgeData().subscribe({
+    this.pyramidAgeService.getPyramidAgeTotalData().subscribe({
       next: (data: any) => {
+        console.log('Data fetched:', data); // Log the data fetched
         const processedData = this.processData(data);
+        console.log('Processed data:', processedData); // Log the processed data
         this.createPyramidChart(processedData);
       },
       error: (err) => {
@@ -65,9 +66,9 @@ export class AgePyramidComponent implements AfterViewInit {
       const index = labels.indexOf(item.AGE_GROUP);
       if (index !== -1) {
         if (item.SEXE === 'M') {
-          menData[index] = item.COUNT;
+          menData[index] = item.TOTAL_COUNT;
         } else if (item.SEXE === 'F') {
-          womenData[index] = -item.COUNT; // Make female data negative
+          womenData[index] = -item.TOTAL_COUNT; // Make female data negative
         }
       }
     });
@@ -94,7 +95,6 @@ export class AgePyramidComponent implements AfterViewInit {
               backgroundColor: '#317AC1',
               borderColor: 'rgba(54, 162, 235, 1)',
               borderWidth: 1,
-              //stack: 'stack1',
             },
             {
               label: 'Femmes',
@@ -102,7 +102,6 @@ export class AgePyramidComponent implements AfterViewInit {
               backgroundColor: '#E1A624',
               borderColor: 'rgba(255, 99, 132, 1)',
               borderWidth: 1,
-              //stack: 'stack2',
             },
           ],
         },
@@ -115,14 +114,14 @@ export class AgePyramidComponent implements AfterViewInit {
             },
             title: {
               display: true,
-              text: 'PYRAMIDE DES AGES DES ADHERENTS​',
+              text: 'PYRAMIDE DES AGES DE LA POPULATION TOTALE​',
             },
           },
           scales: {
             x: {
               beginAtZero: true,
-              min: -8000, //  data range
-              max: 8000, //  data range
+              min: -10000,
+              max: 10000,
               ticks: {
                 stepSize: 1000,
               },

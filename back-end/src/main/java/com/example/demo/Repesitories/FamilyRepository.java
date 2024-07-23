@@ -4,6 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+
+import java.util.List;
+import java.util.Map;
+
 @Repository
 public class FamilyRepository {
     @Autowired
@@ -23,6 +27,17 @@ public class FamilyRepository {
         String sql = "SELECT COUNT(*) FROM FAMILLE where PARENTE = 'E' ";
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
+
+    public void executePyramideDesAgesParSexeTotal() {
+        jdbcTemplate.execute("BEGIN PyramideAgeParSexTotal; END;");
+    }
+
+
+    public List<Map<String, Object>> fetchPyramideDesAgesParSexeTotal() {
+        String sql = "SELECT * FROM TablePyramideAgeParSexTotal ";
+        return jdbcTemplate.queryForList(sql);
+    }
+
 
 
 

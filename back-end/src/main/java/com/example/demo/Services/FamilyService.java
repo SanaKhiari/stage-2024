@@ -4,6 +4,9 @@ import com.example.demo.Repesitories.FamilyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class FamilyService {
     @Autowired
@@ -20,5 +23,17 @@ public class FamilyService {
     public int getTotalEnfants() {
         return familyRepository.countTotalEnfant();
     }
+
+
+
+    public void generatePyramideDesAgesParSexeTotal() {
+        familyRepository.executePyramideDesAgesParSexeTotal();
+    }
+    // Fetch the results of the pyramid age procedure
+    public List<Map<String, Object>> getPyramideDesAgesParSexeTotal() {
+        return familyRepository.fetchPyramideDesAgesParSexeTotal();
+    }
+
+
 }
 
