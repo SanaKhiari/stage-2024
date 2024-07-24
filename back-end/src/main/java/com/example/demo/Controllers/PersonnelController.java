@@ -31,4 +31,7 @@ public class PersonnelController {
         personnelService.generatePyramideDesAgesParSexe();
         return personnelService.getPyramideDesAgesParSexe();
     }
+
+    @GetMapping("/average")
+    public int averagePersonnel(){return personnelService.averagePersonnel();}
 }

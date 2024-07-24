@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Stat1Component } from './components/stat1/stat1.component';
 import { AgePyramidComponent } from './components/age-pyramid/age-pyramid.component';
 import { AgePyramidTotalComponent } from './components/age-pyramid-total/age-pyramid-total.component';
+import { AvreageAgeComponent } from './components/avreage-age/avreage-age.component';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { AgePyramidTotalComponent } from './components/age-pyramid-total/age-pyr
     Stat1Component,
     AgePyramidComponent,
     AgePyramidTotalComponent,
+    AvreageAgeComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

@@ -34,6 +34,10 @@ public class FamilyService {
         return familyRepository.fetchPyramideDesAgesParSexeTotal();
     }
 
+    public int getAverageCnjoint(){return familyRepository.AvreageConjoint();}
+
+    public int getAverageEnfant(){return familyRepository.AvreageEnfant();}
+
 
 }
 

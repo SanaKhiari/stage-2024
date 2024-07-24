@@ -38,6 +38,17 @@ public class FamilyRepository {
         return jdbcTemplate.queryForList(sql);
     }
 
+    public int AvreageConjoint(){
+        String sql = "SELECT FLOOR(AVG(EXTRACT(YEAR FROM SYSDATE) - EXTRACT(YEAR FROM dat_naiss) )) AS age_moyen FROM Famille where parente = 'C'";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+
+    public int AvreageEnfant(){
+        String sql = "SELECT FLOOR(AVG(EXTRACT(YEAR FROM SYSDATE) - EXTRACT(YEAR FROM dat_naiss) )) AS age_moyen FROM Famille where parente = 'E'";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
 
 
 

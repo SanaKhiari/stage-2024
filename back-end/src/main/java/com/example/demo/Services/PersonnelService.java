@@ -28,4 +28,5 @@ public class PersonnelService {
     public List<Map<String, Object>> getPyramideDesAgesParSexe() {
         return personnelRepository.fetchPyramideDesAgesParSexe();
     }
+    public int averagePersonnel(){return personnelRepository.average();}
 }

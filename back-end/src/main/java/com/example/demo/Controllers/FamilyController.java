@@ -41,5 +41,11 @@ public class FamilyController {
         return familyService.getPyramideDesAgesParSexeTotal();
     }
 
+    @GetMapping("/avreageConjoint")
+    public int getAvreageConjoint(){return familyService.getAverageCnjoint();}
+
+
+    @GetMapping("/avreageEnfant")
+    public int getAvreageEnfant(){return familyService.getAverageEnfant();}
 
 }

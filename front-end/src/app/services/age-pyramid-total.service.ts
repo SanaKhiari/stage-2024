@@ -13,6 +13,4 @@ export class AgePyramidTotalService {
   getPyramidAgeTotalData(): Observable<any> {
     return this.http.get(this.baseUrl);
   }
-
-  //constructor() {}
 }

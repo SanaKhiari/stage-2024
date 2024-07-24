@@ -28,4 +28,9 @@ public class PersonnelRepesitory  {
         return jdbcTemplate.queryForList(sql);
     }
 
+    public int average() {
+        String sql ="SELECT FLOOR(AVG(EXTRACT(YEAR FROM SYSDATE) - EXTRACT(YEAR FROM dat_nais) )) AS age_moyen FROM Personnel";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
 }
