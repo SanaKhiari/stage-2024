@@ -4,6 +4,7 @@ import { Stat1Component } from './components/stat1/stat1.component';
 import { AgePyramidComponent } from './components/age-pyramid/age-pyramid.component';
 import { AgePyramidTotalComponent } from './components/age-pyramid-total/age-pyramid-total.component';
 import { AvreageAgeComponent } from './components/avreage-age/avreage-age.component';
+import { PopulationEvolutionComponent } from './components/population-evolution/population-evolution.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { AvreageAgeComponent } from './components/avreage-age/avreage-age.compon
     AgePyramidComponent,
     AgePyramidTotalComponent,
     AvreageAgeComponent,
+    PopulationEvolutionComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

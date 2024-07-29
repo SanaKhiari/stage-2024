@@ -1,0 +1,17 @@
+<div class="chart-container">
+  <h2>EVOLUTION GENERALE DE LA POPULATION</h2>
+
+  <!-- Year selection input -->
+  <label for="year">Choisissez l'année:</label>
+  <input
+    type="number"
+    id="year"
+    [(ngModel)]="selectedYear"
+    (change)="onYearChange()"
+    min="2000"
+    max="2024"
+  />
+
+  <!-- Chart display -->
+  <canvas id="MyChart"></canvas>
+</div>

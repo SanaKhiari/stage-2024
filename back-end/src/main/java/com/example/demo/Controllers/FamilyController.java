@@ -42,7 +42,7 @@ public class FamilyController {
     }
 
     @GetMapping("/avreageConjoint")
-    public int getAvreageConjoint(){return familyService.getAverageCnjoint();}
+    public int getAvreafgeConjoint(){return familyService.getAverageCnjoint();}
 
 
     @GetMapping("/avreageEnfant")
