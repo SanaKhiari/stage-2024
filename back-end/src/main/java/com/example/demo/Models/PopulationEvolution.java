@@ -3,8 +3,16 @@ package com.example.demo.Models;
 public class PopulationEvolution {
     private String mois;
     private int nombreDeNaissances;
+    private String Type;
 
-    // Getters and Setters
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String type) {
+        this.Type = type;
+    }
+
     public String getMois() {
         return mois;
     }

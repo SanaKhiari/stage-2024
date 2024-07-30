@@ -1,0 +1,26 @@
+<div>
+  <h2>Évolution Mensuelle par Type</h2>
+  <label for="year-select">Choisissez l'année:</label>
+  <select id="year-select" [(ngModel)]="annee" (change)="onYearChange(annee)">
+    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+  </select>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Mois</th>
+        <th>Personnel</th>
+        <th>Conjoint</th>
+        <th>Enfant</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data">
+        <td>{{ item.mois }}</td>
+        <td>{{ item.Personnel || 0 }}</td>
+        <td>{{ item.Conjoint || 0 }}</td>
+        <td>{{ item.Enfant || 0 }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

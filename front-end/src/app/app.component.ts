@@ -6,6 +6,7 @@ import { AgePyramidTotalComponent } from './components/age-pyramid-total/age-pyr
 import { AvreageAgeComponent } from './components/avreage-age/avreage-age.component';
 import { PopulationEvolutionComponent } from './components/population-evolution/population-evolution.component';
 import { AdherentParServiceComponent } from './components/adherent-par-service/adherent-par-service.component';
+import { EvolutionMonsuelleParTypeComponent } from './components/evolution-monsuelle-par-type/evolution-monsuelle-par-type.component';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ import { AdherentParServiceComponent } from './components/adherent-par-service/a
     AvreageAgeComponent,
     PopulationEvolutionComponent,
     AdherentParServiceComponent,
+    EvolutionMonsuelleParTypeComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

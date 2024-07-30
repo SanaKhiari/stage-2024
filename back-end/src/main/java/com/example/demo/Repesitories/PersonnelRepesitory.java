@@ -10,6 +10,13 @@ import java.util.Map;
 
 @Repository
 public class PersonnelRepesitory  {
+
+    public interface EvolutionMensuelleParType {
+        String getMois();
+        String getType();
+        Integer getNombreDeNaissances();
+    }
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -37,5 +44,7 @@ public class PersonnelRepesitory  {
         String sql = "SELECT s.libelle, COUNT(*) as total_count FROM personnel p JOIN ref_service s ON p.Cod_soc = s.kserv GROUP BY s.libelle";
         return jdbcTemplate.queryForList(sql);
     }
+
+
 
 }

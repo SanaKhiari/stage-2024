@@ -18,4 +18,8 @@ public class PopulationEvolutionService {
     public List<PopulationEvolution> getPopulationEvolution(int annee) {
         return populationEvolutionRepository.getPopulationEvolution(annee);
     }
+    public List<PopulationEvolution> getEvolutionMensuelle(int annee) {
+        return populationEvolutionRepository.getEvolutionMensuelle(annee);
+    }
+
 }

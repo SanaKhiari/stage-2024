@@ -1,0 +1,67 @@
+/* Style général pour le conteneur */
+div {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+/* Style pour le titre */
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+/* Style pour le label */
+label {
+  font-size: 20px;
+  margin-right: 10px;
+  color: #555;
+}
+
+/* Style pour le sélecteur */
+select {
+  font-size: 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+/* Style pour le tableau */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+/* Style pour les en-têtes de tableau */
+thead th {
+  background-color: #317ac1;
+  color: #fff;
+  padding: 12px;
+  text-align: left;
+}
+
+/* Style pour les cellules du tableau */
+tbody td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style pour les lignes alternées du tableau */
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Style pour les lignes au survol */
+tbody tr:hover {
+  background-color: #e2e2e2;
+}

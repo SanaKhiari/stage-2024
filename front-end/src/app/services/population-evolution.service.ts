@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 export interface PopulationEvolution {
   mois: string;
   nombreDeNaissances: number;
+
+  Type: string;
 }
 
 @Injectable({
@@ -18,6 +20,13 @@ export class PopulationEvolutionService {
   getPopulationEvolution(annee: number): Observable<PopulationEvolution[]> {
     return this.http.get<PopulationEvolution[]>(
       `${this.baseUrl}?annee=${annee}`
+    );
+  }
+  getPopulationEvolutionMensuelle(
+    annee: number
+  ): Observable<PopulationEvolution[]> {
+    return this.http.get<PopulationEvolution[]>(
+      `http://localhost:3000/mensuelle?annee=${annee}`
     );
   }
 }

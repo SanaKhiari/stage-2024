@@ -17,6 +17,7 @@ import java.util.Map;
 public class PopulationEvolutionRepository {
 
     private final SimpleJdbcCall simpleJdbcCall;
+    private final SimpleJdbcCall evolutionMensuelleCall;
 
     @Autowired
     public PopulationEvolutionRepository(JdbcTemplate jdbcTemplate) {
@@ -31,10 +32,27 @@ public class PopulationEvolutionRepository {
                         return evolution;
                     }
                 });
+        this.evolutionMensuelleCall = new SimpleJdbcCall(jdbcTemplate)
+                .withFunctionName("evolution_mensuelle_par_type")
+                .returningResultSet("rs", new RowMapper<PopulationEvolution>() {
+                    @Override
+                    public PopulationEvolution mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        PopulationEvolution evolution = new PopulationEvolution();
+                        evolution.setMois(rs.getString("mois"));
+                        evolution.setNombreDeNaissances(rs.getInt("nombre_de_naissances"));
+                        evolution.setType(rs.getString("Type"));
+                        return evolution;
+                    }
+                });
     }
+
 
     public List<PopulationEvolution> getPopulationEvolution(int annee) {
         Map<String, Object> result = simpleJdbcCall.execute(annee);
+        return (List<PopulationEvolution>) result.get("rs");
+    }
+    public List<PopulationEvolution> getEvolutionMensuelle(int annee) {
+        Map<String, Object> result = evolutionMensuelleCall.execute(annee);
         return (List<PopulationEvolution>) result.get("rs");
     }
 }

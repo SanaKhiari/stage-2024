@@ -23,4 +23,10 @@ public class PopulationEvolutionController {
     public List<PopulationEvolution> getPopulationEvolution(@RequestParam int annee) {
         return populationEvolutionService.getPopulationEvolution(annee);
     }
+
+    @GetMapping("/mensuelle")
+    public List<PopulationEvolution> getEvolutionMensuelle(@RequestParam int annee) {
+        return populationEvolutionService.getEvolutionMensuelle(annee);
+    }
+
 }
