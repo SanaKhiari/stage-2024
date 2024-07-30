@@ -79,7 +79,18 @@ export class AdherentParServiceComponent implements OnInit {
           responsive: true,
           plugins: {
             legend: {
-              position: 'left',
+              position: 'right',
+              labels: {
+                // Customize legend labels
+                filter: (legendItem, data) => {
+                  return (
+                    legendItem.index !== undefined && legendItem.index < 10
+                  ); // Show only top 10 items
+                },
+                font: {
+                  size: 12,
+                },
+              },
             },
             tooltip: {
               callbacks: {
