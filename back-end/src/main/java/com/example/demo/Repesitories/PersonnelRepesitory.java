@@ -33,4 +33,9 @@ public class PersonnelRepesitory  {
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
+    public List<Map<String, Object>> getCountByService() {
+        String sql = "SELECT s.libelle, COUNT(*) as total_count FROM personnel p JOIN ref_service s ON p.Cod_soc = s.kserv GROUP BY s.libelle";
+        return jdbcTemplate.queryForList(sql);
+    }
+
 }

@@ -29,4 +29,7 @@ public class PersonnelService {
         return personnelRepository.fetchPyramideDesAgesParSexe();
     }
     public int averagePersonnel(){return personnelRepository.average();}
+    public List<Map<String, Object>> CountByService() {
+        return personnelRepository.getCountByService();
+    }
 }

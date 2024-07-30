@@ -34,4 +34,10 @@ public class PersonnelController {
 
     @GetMapping("/average")
     public int averagePersonnel(){return personnelService.averagePersonnel();}
+
+    @GetMapping("/CountByService")
+    public List<Map<String, Object>> CountByService() {
+
+        return personnelService.CountByService();
+    }
 }

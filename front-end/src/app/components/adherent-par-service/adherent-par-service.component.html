@@ -1,0 +1,9 @@
+<div class="adherent-container">
+  <h2>Nombre Adherent par Service</h2>
+  <div *ngIf="adherentData.length > 0; else noData">
+    <canvas id="doughnutChart"></canvas>
+  </div>
+  <ng-template #noData>
+    <p>Aucune donnée disponible.</p>
+  </ng-template>
+</div>
