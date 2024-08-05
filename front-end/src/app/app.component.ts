@@ -7,6 +7,7 @@ import { AvreageAgeComponent } from './components/avreage-age/avreage-age.compon
 import { PopulationEvolutionComponent } from './components/population-evolution/population-evolution.component';
 import { AdherentParServiceComponent } from './components/adherent-par-service/adherent-par-service.component';
 import { EvolutionMonsuelleParTypeComponent } from './components/evolution-monsuelle-par-type/evolution-monsuelle-par-type.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { EvolutionMonsuelleParTypeComponent } from './components/evolution-monsu
     PopulationEvolutionComponent,
     AdherentParServiceComponent,
     EvolutionMonsuelleParTypeComponent,
+    HomePageComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
