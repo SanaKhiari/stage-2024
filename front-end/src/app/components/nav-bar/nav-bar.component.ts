@@ -11,7 +11,7 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class NavBarComponent {
   user = {
-    name: 'John Doe',
-    profilePicture: '',
+    name: 'Sana Khiari',
+    profilePicture: 'sanaPic.jpg',
   };
 }
