@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { Stat1Component } from './components/stat1/stat1.component';
 import { AgePyramidComponent } from './components/age-pyramid/age-pyramid.component';
 import { AgePyramidTotalComponent } from './components/age-pyramid-total/age-pyramid-total.component';
@@ -7,7 +7,9 @@ import { AvreageAgeComponent } from './components/avreage-age/avreage-age.compon
 import { PopulationEvolutionComponent } from './components/population-evolution/population-evolution.component';
 import { AdherentParServiceComponent } from './components/adherent-par-service/adherent-par-service.component';
 import { EvolutionMonsuelleParTypeComponent } from './components/evolution-monsuelle-par-type/evolution-monsuelle-par-type.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +23,11 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
     PopulationEvolutionComponent,
     AdherentParServiceComponent,
     EvolutionMonsuelleParTypeComponent,
+    RouterLink,
+    RouterLinkActive,
+    NavBarComponent,
     HomePageComponent,
+    SidebarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

@@ -1,0 +1,61 @@
+/* General page container */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  margin-left: 250px;
+  gap: 50px;
+}
+
+/* Flex row for components */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 60px;
+}
+
+.stat1-container {
+  background-color: #ffffff;
+  border-left: 5px solid #007bff; /* Blue border on the left */
+  width: 40%;
+  animation: fadeIn 1s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart1-container {
+  background-color: #ffffff;
+  border-left: 5px solid #ffa500; /* Orange border on the left */
+  animation: fadeIn 1s ease-in-out;
+  width: 50%;
+}
+
+.chart2-container {
+  background-color: #ffffff;
+  border-left: 5px solid #28a745; /* Green border on the left */
+  animation: fadeIn 1s ease-in-out;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

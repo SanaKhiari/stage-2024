@@ -1,5 +1,12 @@
-import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {
+  Component,
+  OnInit,
+  Renderer2,
+  ElementRef,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Chart, registerables } from 'chart.js';
 import { PersonnelService } from '../../services/personnel.service';
 
@@ -17,13 +24,18 @@ interface ServiceCount {
 })
 export class AdherentParServiceComponent implements OnInit {
   adherentData: ServiceCount[] = [];
+  isBrowser: boolean;
 
   constructor(
     private personnelService: PersonnelService,
     private renderer: Renderer2,
-    private el: ElementRef
+    private el: ElementRef,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {
-    Chart.register(...registerables); // Register Chart.js components
+    this.isBrowser = isPlatformBrowser(platformId);
+    if (this.isBrowser) {
+      Chart.register(...registerables); // Register Chart.js components
+    }
   }
 
   ngOnInit(): void {
@@ -33,9 +45,11 @@ export class AdherentParServiceComponent implements OnInit {
   loadAdherentData(): void {
     this.personnelService.getTotalAdherentParService().subscribe({
       next: (data: ServiceCount[]) => {
-        //console.log('Received data:', data);
+        console.log('Received data:', data);
         this.adherentData = data;
-        this.renderChart();
+        if (this.isBrowser) {
+          setTimeout(() => this.renderChart(), 0); // Delay rendering to ensure canvas is in the DOM
+        }
       },
       error: (error) => {
         console.error('Error loading adherent data:', error);
@@ -47,10 +61,12 @@ export class AdherentParServiceComponent implements OnInit {
   }
 
   renderChart(): void {
+    console.log('Attempting to render chart...');
     const canvas = this.el.nativeElement.querySelector(
       '#doughnutChart'
     ) as HTMLCanvasElement;
     if (canvas) {
+      console.log('Canvas element found:', canvas);
       new Chart(canvas, {
         type: 'doughnut',
         data: {
@@ -81,7 +97,6 @@ export class AdherentParServiceComponent implements OnInit {
             legend: {
               position: 'right',
               labels: {
-                // Customize legend labels
                 filter: (legendItem, data) => {
                   return (
                     legendItem.index !== undefined && legendItem.index < 10
@@ -94,14 +109,15 @@ export class AdherentParServiceComponent implements OnInit {
             },
             tooltip: {
               callbacks: {
-                label: function (tooltipItem) {
-                  return `${tooltipItem.label}: ${tooltipItem.raw}`;
-                },
+                label: (tooltipItem) =>
+                  `${tooltipItem.label}: ${tooltipItem.raw}`,
               },
             },
           },
         },
       });
+    } else {
+      console.error('Canvas element not found');
     }
   }
 }

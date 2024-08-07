@@ -1,2 +1,50 @@
-<p>home-page works!</p>
-<h1>Welcome to the Home Page!</h1>
+<div class="home-container">
+  <div class="home-box">
+    <h1>Welcome to the Statistics Dashboard</h1>
+    <div class="first-box">
+      <p>
+        This dashboard provides insights into various aspects of our data. Use
+        the navigation menu to explore different sections, or click on the links
+        below to go directly to the statistics you are interested in.
+      </p>
+
+      <img
+        src="visual-data-concept-illustration.png"
+        alt="Visual Data Concept"
+        class="home-image"
+      />
+    </div>
+
+    <div class="overview">
+      <h2 style="font-size: 35px">Overview of Statistics</h2>
+      <ul>
+        <li style="--i: 1">
+          <h3>
+            <a routerLink="/Over-view-page">Population OverView</a>
+          </h3>
+          <p>A visual representation of the distribution of the population.</p>
+        </li>
+        <li style="--i: 2">
+          <h3><a routerLink="/Age-analysis-page">Age Analysis</a></h3>
+          <p>
+            Includes age pyramids for members and the entire population, and the
+            average age per population type.
+          </p>
+        </li>
+        <!-- <li style="--i: 3">
+          <h3>
+            <a routerLink="/population-evolution">Population Evolution</a>
+          </h3>
+          <p>
+            Shows the general evolution of the population and the monthly
+            evolution by type.
+          </p>
+        </li> -->
+        <li style="--i: 3">
+          <h3><a routerLink="/adherent-par-service">Service Analysis</a></h3>
+          <p>Number of members per service represented in a pie chart.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
